@@ -60,7 +60,7 @@ while tag:
     for key in menu1: # 打印一级菜单
         print(key)
 
-    choice1 = input("请输入第一级分类：").strip() # 获取第一层选项
+    choice1 = input("请输入第一级分类：(b-返回上一级，q-退出程序)").strip() # 获取第一层选项
 
     # 特殊情况处理
     if choice1 == 'b': # 返回上一层
@@ -79,11 +79,11 @@ while tag:
         menu2 = menu1[choice1] # 拿到一层字典
         for key in menu2:
             print(key)
-        choice2 = input("请输入二级类目：")
+        choice2 = input("请输入二级类目：(b-返回上一级，q-退出程序)")
 
         # 特殊情况处理
         if choice2 == 'b':  # 返回上一层
-            print("欢迎下次使用杭州垃圾分类查询系统。")
+            print("返回上一级。")
             break
         if choice2 == 'q':  # 退出程序
             tag = False
@@ -92,3 +92,18 @@ while tag:
         if choice2 not in menu2:  # 不存在毒类目
             print("没有该分类毒垃圾，重新输入。")
             continue
+
+        while tag:
+            menu3 = menu2[choice2] # 拿到二层字典
+            for key in menu3:
+                print(key)
+            choice3 = input("请输入操作：(b-返回上一级，q-退出程序)")
+
+            # 特殊情况处理
+            if choice3 == 'b':  # 返回上一层
+                print("返回上一级。")
+                break
+            if choice3 == 'q':  # 退出程序
+                tag = False
+                print("欢迎下次使用杭州垃圾分类查询系统。")
+                continue
