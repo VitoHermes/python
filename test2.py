@@ -12,7 +12,6 @@ def login(): # 登录
         user_info_dict = {} # 用户名-用户密码的字典
         for user_info in data:
             user_info_dict[user_info.split('|')[0]] = user_info.split('|')[1]
-        #print(user_info_dict) # 生成用户信息
 
     while True:
         name = input("Input your name:")
@@ -20,10 +19,21 @@ def login(): # 登录
         for user in user_info_dict: # 遍历寻找是否是注册用户
             if name in user_info_dict: # 输入的用户名是已注册用户
                 if password == user_info_dict[name]: # 密码正确，登录成功
+                    # 判断是否在黑名单
+                    with open('blacklist.txt', 'r') as f1:
+                        black_user_list = f1.readlines()
+                        print(black_user_list)
+                        for name_b in black_user_list:
+                            if name == name_b.strip().replace('\n',''):
+                                print("You are in the blacklist!")
+                                return [False, None]
+                    # 不在黑名单，登录成功
                     print("Login successfully!")
                     return [True, name] # 登录成功
-                elif wrong_time == 2: # 超过次数，直接结束
+                elif wrong_time == 2: # 超过次数，直接结束，加入黑名单
                     print("Your password is wrong for too many times!")
+                    with open('blacklist.txt', 'a') as f2:
+                        f2.writelines('\n'+name)
                     return [False, None]
                 else: # 密码错误,重新输入
                     print("Your password is wrong, do it again.")
@@ -80,10 +90,6 @@ def buyGoods(user_now, shop_car, shop_all): # 商品结算
             else:
                 f1.writelines(user_info) # 不是该用户的内容不变
         return True
-  #  print(data)
-  #  print(total_money)
-  #      f1.writelines('\n'+lines) # 写入文件
-
 
 while True:
     print("1-login\n2-signup\n")
@@ -107,6 +113,7 @@ while True:
 
     if not login_status:# 登录不成功，继续循环
         continue
+
 
     # 打印商品
     while True:
@@ -141,8 +148,3 @@ while True:
         else:
             print("Input 1-3 or q.")
             continue
-
-
-#    user_info = f1.readline().split('|')
-#    print(user_info)
-
