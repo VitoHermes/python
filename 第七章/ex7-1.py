@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # @Time    : 2019-08-07 14:53
 # @Author  : Vito  
-# @File    : wrapper.py
+# @File    : ex7-1.py
 
 from functools import wraps
 with open('pwd.txt') as f1:
