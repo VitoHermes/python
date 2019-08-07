@@ -9,7 +9,7 @@
 """
 
 # 定义垃圾分菜单明细
-menus = {
+trash_menu = {
     '可回收物': {
         '瓶子类':{
             '玻璃瓶': {},
@@ -53,6 +53,7 @@ menus = {
 
 print('欢迎来到杭州垃圾分类查询系统！'.center(30,'*'))
 menu = []#声明以空列表来存储菜单
+menus = trash_menu
 while True:
     menu_now = {} #当前菜单的数字-菜单内容字典，方便选择
     for index,good in enumerate(menus,1): #使用枚举函数遍历字典的键
@@ -67,6 +68,8 @@ while True:
         elif choose.upper() == 'B':
             menus = menu[-1] #把菜单赋值给列表的最后一个元素
             menu.pop() #删掉列表的最后一个元素
+#            print("menus", menus)
+#            print("menu", menu)
         else:
             print('error')
     else: #要购买有下级菜单可以继续操作
@@ -76,14 +79,20 @@ while True:
             if int(choice) in menu_now.keys():
                 menu.append(menus)#把菜单添加到列表中
                 menus = menus[menu_now[int(choice)]]#重新赋值菜单
+#                print("menus", menus)
+#                print("menu", menu)
             else:
                 print('range out')
         else:
             if choice.upper() == 'B':
-                print('由于当前处于首层菜单，因此本次返回将退出程序！')
-                if len(menu) < 1:break
+
+                if len(menu) < 1:
+                    print('由于当前处于首层菜单，因此本次返回将退出程序！')
+                    break
                 menus = menu[-1]#把菜单赋值给列表的最后一个元素
                 menu.pop()#删掉列表的最后一个元素
+#                print("menus", menus)
+#                print("menu", menu)
             elif choice.upper() == 'Q':
                 print('欢迎再次查询垃圾分类！')
                 break
