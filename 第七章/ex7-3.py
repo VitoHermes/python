@@ -29,19 +29,18 @@ def auth(func):
         elif user_info[name] == pwd:
             print('login in successful!')
             login_time = time.time() # 记录登录成功的时间
-            #print(login_time)
             current_user['username'] = name
             return func(*args, **kwargs)
         else:
             print("Wrong password!")
     return wrapper
 
-def log_func(func):
+def log_func(func): # 记录运行时间的log
     @wraps(func)
-    def wrapper(*args,**kwargs):
+    def wrapper(*args, **kwargs):
         with open(log_url,'a+',encoding='utf-8') as f1:
             f1.write(time.strftime('%Y-%m-%d %H:%M:%S',time.localtime())+'\t'+"function:"+ func.__name__ +'  executed\n')
-        res = func(*args, *kwargs)
+        res = func(*args, **kwargs)
         return res
     return wrapper
 
@@ -65,5 +64,6 @@ def index2():
 
 if __name__ == '__main__':
     index()
-    index2()
     index1()
+    index2()
+
