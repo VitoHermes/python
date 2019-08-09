@@ -66,8 +66,7 @@ while True:
             print('欢迎再次查询垃圾分类！')
             break
         elif choose.upper() == 'B':
-            menus = menu[-1] #把菜单赋值给列表的最后一个元素
-            menu.pop() #删掉列表的最后一个元素
+            menus = menu.pop() #删掉列表的最后一个元素
 #            print("menus", menus)
 #            print("menu", menu)
         else:
@@ -85,12 +84,10 @@ while True:
                 print('range out')
         else:
             if choice.upper() == 'B':
-
                 if len(menu) < 1:
                     print('由于当前处于首层菜单，因此本次返回将退出程序！')
                     break
-                menus = menu[-1]#把菜单赋值给列表的最后一个元素
-                menu.pop()#删掉列表的最后一个元素
+                menus = menu.pop()#删掉列表的最后一个元素
 #                print("menus", menus)
 #                print("menu", menu)
             elif choice.upper() == 'Q':

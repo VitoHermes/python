@@ -77,8 +77,6 @@ while tag:
     # 进入二级菜单
     while tag:
         menu2 = menu1[choice1] # 拿到一层字典
-        for key in menu2:
-            print(key)
         choice2 = input("请输入二级类目：(b-返回上一级，q-退出程序)")
 
         # 特殊情况处理
@@ -105,5 +103,8 @@ while tag:
                 break
             if choice3 == 'q':  # 退出程序
                 tag = False
-                print("欢迎下次使用杭州垃圾分类查询系统。")
-                continue
+        for key in menu2:
+            print(key)
+            print("欢迎下次使用杭州垃圾分类查询系统。")
+            continue
+
