@@ -28,6 +28,10 @@ def max_line(file_name):
 
 print(max_line("test1.py"))
 
+# 本章方法
+with open('test1.py','r',encoding="utf-8") as f1:
+    print(len(max(f1,key = lambda x:len(x)))) # max函数和匿名函数联用
+
 # exe-4 shoping.txt 如下
 """
 mac,20000,3
@@ -56,3 +60,13 @@ with open('shopping.txt','r',encoding='UTF-8') as f1:
     shops_new = filter(lambda x:int(x['price']) > 10000,shops)
     print(list(shops_new)) # [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}]
 
+# 本章内容方法
+total = 0
+with open('shopping.txt','r',encoding='UTF-8') as f1:
+    for i in f1:
+        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0],price=i.split(',')[1],count=i.split(',')[2]).replace('\n',''))
+        total += int(i.split(',')[1]) * int(i.split(',')[2].replace('\n',''))
+    print("商品总价格为："+str(total))
+    f1.seek(0)
+    for j in [i for i in f1 if int(i.split(',')[1]) > 10000]: # 列表生成式
+        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0],price=i.split(',')[1],count=i.split(',')[2]).replace('\n',''))
