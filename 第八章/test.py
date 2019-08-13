@@ -41,6 +41,7 @@ print(res.__next__())
 print(res.__next__())
 print(res.__next__())
 """
+"""
 def foo():
     print("starting")
     while True:
@@ -111,6 +112,9 @@ person1 = eat('vito')
 next(person1)
 person1 = eat('apple')
 person1.__next__()
+person1.send('noodles')
+person1.send('noodles')
+person1.close()
 
 i = 4
 j = 1
@@ -126,3 +130,61 @@ dict1 = {'name':'vito','name1':'vito','name2':'vito'}
 
 for num, item in enumerate(dict1, 1):
     print("%d %s" % (num, item))
+
+def foo(x,y,**kwargs):
+    print(x,y)
+    print(kwargs)
+foo(x=1,y=2,z=3,a=4)
+
+
+def chicken():
+    print("1")
+    yield 1
+    print("2")
+    yield 2
+    print("3")
+    yield 3
+
+obj = chicken()
+print(obj)
+print(obj.__iter__() is obj)
+print(obj.__next__())
+print(obj.__next__())
+print(obj.__next__())
+print(obj.__next__())
+print(obj.__next__())
+
+
+def auth(*args, **kwargs):
+    print(args)
+    print(kwargs)
+    if len(args) != 0: # 不能接收位置参数
+        print("wrong")
+        return
+    print(len(args))
+    if 'name' not in kwargs: # 必须有name参数
+        print("wrong")
+        return
+    if 'pwd' not in kwargs: # 必须有 pwd参数
+        print("wrong")
+        return
+    name = kwargs['name']
+    pwd = kwargs['pwd']
+    print(name, pwd)
+
+auth() # 报错
+auth('vito','123') # 报错
+auth(sex='vito', pwd='123')  # 报错
+auth(name='vito', pwd='123') # ok
+
+def foo(x,y,*,z):
+    print(x,y,z)
+
+foo(1,2,z=3)
+"""
+
+from itertools import permutations
+for vec in permutations(range(8)):
+    for i in range(8):
+        if (vec[i] + i) == 8 and
+    print(vec)
