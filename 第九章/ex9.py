@@ -5,32 +5,34 @@
 # @File    : ex9.py
 
 # exe-1  全部变为大写
-names = ['albert','james','kobe','kd']
-names = map(lambda x:x.upper(),names)
+names = ['albert', 'james', 'kobe','kd']
+names = map(lambda x: x.upper(), names)
 print(list(names))
 
 # exe-2 将以shenjing结尾的名字过滤掉，保存剩下的名字长度
-names = ['albert','jr_shenjing','kobe','kd']
-names = filter(lambda x:not x.endswith('shenjing'),names)
-names1 = map(lambda x:len(x),names)
+names = ['albert', 'jr_shenjing', 'kobe', 'kd']
+names = filter(lambda x: not x.endswith('shenjing'), names)
+names1 = map(lambda x: len(x), names)
 # 先用filter过滤，再用map映射。
 
 print(list(names1))
 
+
 # exe-3 求文件a.txt 中最长的行的长度（长度按字符个数算，使用max函数）
-def max_line(file_name):
+def max_line(file_name):  # 顶层函数与类的定义要用两个空行隔开
     max_num = 0
-    with open(file_name,'r',encoding="utf-8") as f1:
+    with open(file_name, 'r', encoding="utf-8") as f1:
         for line in f1.readlines():
             if len(line) > max_num:
                 max_num = len(line)
     return max_num
 
+
 print(max_line("test1.py"))
 
 # 本章方法
-with open('test1.py','r',encoding="utf-8") as f1:
-    print(len(max(f1,key = lambda x:len(x)))) # max函数和匿名函数联用
+with open('test1.py', 'r', encoding="utf-8") as f1:
+    print(len(max(f1, key=lambda x: len(x))))  # max函数和匿名函数联用
 
 # exe-4 shoping.txt 如下
 """
@@ -44,9 +46,9 @@ chicken,200,1
 3)求单价大于10000的商品信息，格式同上
 """
 # 把商品信息存储在字典内。
-shops = [] # 商品列表
+shops = []  #商品列表
 total = 0
-with open('shopping.txt','r',encoding='UTF-8') as f1:
+with open('shopping.txt', 'r', encoding='UTF-8') as f1:
     for line in f1.readlines():
         shop = {}
         shop['name'] = line.split(',')[0]
@@ -55,18 +57,18 @@ with open('shopping.txt','r',encoding='UTF-8') as f1:
         total += int(shop['num']) * int(shop['price'])
         print(shop)
         shops.append(shop)
-    print(shops) # 打印商品信息 [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'lenovo', 'price': '3000', 'num': '10'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}, {'name': 'chicken', 'price': '200', 'num': '1'}]
-    print(total) # 总金额 10090200
-    shops_new = filter(lambda x:int(x['price']) > 10000,shops)
-    print(list(shops_new)) # [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}]
+    print(shops)  # 打印商品信息 [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'lenovo', 'price': '3000', 'num': '10'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}, {'name': 'chicken', 'price': '200', 'num': '1'}]
+    print(total)  # 总金额 10090200
+    shops_new = filter(lambda x: int(x['price']) > 10000,shops)
+    print(list(shops_new))  # [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}]
 
 # 本章内容方法
 total = 0
-with open('shopping.txt','r',encoding='UTF-8') as f1:
+with open('shopping.txt', 'r', encoding='UTF-8') as f1:
     for i in f1:
-        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0],price=i.split(',')[1],count=i.split(',')[2]).replace('\n',''))
-        total += int(i.split(',')[1]) * int(i.split(',')[2].replace('\n',''))
+        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0], price=i.split(',')[1], count=i.split(',')[2]).replace('\n', ''))
+        total += int(i.split(',')[1]) * int(i.split(',')[2].replace('\n', ''))
     print("商品总价格为："+str(total))
     f1.seek(0)
-    for j in [i for i in f1 if int(i.split(',')[1]) > 10000]: # 列表生成式
-        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0],price=i.split(',')[1],count=i.split(',')[2]).replace('\n',''))
+    for j in [i for i in f1 if int(i.split(',')[1]) > 10000]:  # 列表生成式
+        print('name:{name},price:{price},count:{count}'.format(name=i.split(',')[0], price=i.split(',')[1], count=i.split(',')[2]).replace('\n', ''))
