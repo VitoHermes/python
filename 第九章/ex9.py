@@ -35,8 +35,7 @@ with open('test1.py', 'r', encoding="utf-8") as f1:
     print(len(max(f1, key=lambda x: len(x))))  # max函数和匿名函数联用
 
 # exe-4 shoping.txt 如下
-"""
-mac,20000,3
+"""mac,20000,3
 lenovo,3000,10
 bmw,1000000,10
 chicken,200,1
@@ -60,7 +59,7 @@ with open('shopping.txt', 'r', encoding='UTF-8') as f1:
     print(shops)  # 打印商品信息 [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'lenovo', 'price': '3000', 'num': '10'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}, {'name': 'chicken', 'price': '200', 'num': '1'}]
     print(total)  # 总金额 10090200
     shops_new = filter(lambda x: int(x['price']) > 10000,shops)
-    print(list(shops_new))  # [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}]
+    print(list(shops_new))   #  [{'name': 'mac', 'price': '20000', 'num': '3'}, {'name': 'bmw', 'price': '1000000', 'num': '10'}]
 
 # 本章内容方法
 total = 0

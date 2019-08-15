@@ -1,0 +1,4 @@
+vito male 26 300000
+james male 38 30000
+林志玲 female 28 20000
+石原里美 female 18 100000
