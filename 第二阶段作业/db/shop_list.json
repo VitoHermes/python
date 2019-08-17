@@ -1,0 +1,17 @@
+[
+  {
+    "shop_id": 1,
+    "shop_name": "iPhone",
+    "shop_price": 9000
+  },
+  {
+    "shop_id": 2,
+    "shop_name": "MacBook",
+    "shop_price": 12000
+  },
+  {
+    "shop_id": 3,
+    "shop_name": "Bike",
+    "shop_price": 1200
+  }
+]
